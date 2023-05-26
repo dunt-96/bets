@@ -14,9 +14,15 @@ module.exports = {
     */
 
    return queryInterface.bulkInsert('Users', [{
-      firstName: 'John',
+      email: 'John',
+      password: '123456',
       lastName: 'Doe',
-      email: 'example@example.com',
+      firstName: 'example@example.com',
+      lastName: 'Cena',
+      address: 'HN',
+      gender: 1,
+      typeRole: 'ROLE',
+      keyRole:'R1',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
