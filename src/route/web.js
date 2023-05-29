@@ -5,11 +5,12 @@ let router = express.Router();
 
 let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
-    router.get('/getCRUD', homeController.getCRUD);
+    router.get('/insert_user', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD);
     router.get('/get-crud', homeController.displayCRUD);
     router.get('/edit-crud', homeController.editCRUD);
     router.post('/put-crud', homeController.updateCRUD);
+    router.get('/delete-crud', homeController.deleteUserCRUD);
 
     return app.use("/", router);
 }

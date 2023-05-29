@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import db from "../models/index";
+import { resolve } from "styled-jsx/css";
 
 let createNewUser = (data) => {
   return new Promise(async (resolve, reject) => {
@@ -93,9 +94,31 @@ let updateCRUD = (data) => {
   });
 };
 
+let deleteUserCRUD = (userId) => {
+  return new Promise( async (resolve, reject) => {
+    try {
+      let result = await db.User.destroy({
+        where: {
+          id: userId
+        }
+      })
+
+      if(result) {
+        resolve(result);
+      }
+      else{
+        reject({});
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 module.exports = {
   createNewUser: createNewUser,
   getAllUser: getAllUser,
   getUserById: getUserById,
   updateCRUD: updateCRUD,
+  deleteUserCRUD: deleteUserCRUD
 };

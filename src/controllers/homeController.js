@@ -16,7 +16,7 @@ let dunt = async (req, res) => {
 };
 
 let getCRUD = (req, res) => {
-  res.render("crud.ejs");
+  res.render("insert_user.ejs");
 };
 
 let postCRUD = async (req, res) => {
@@ -48,6 +48,16 @@ let updateCRUD = async (req, res) => {
   return res.send(result);
 }
 
+let deleteUserCRUD = async (req, res) => {
+
+  let userId = req.query.id;
+  console.log(userId);
+  let result = await CRUDService.deleteUserCRUD(userId);
+  console.log(result);
+
+  return res.send("delete success");
+}
+
 module.exports = {
   getHomePage: getHomePage,
   dunt: dunt,
@@ -55,5 +65,6 @@ module.exports = {
   postCRUD: postCRUD,
   displayCRUD: displayCRUD,
   editCRUD: editCRUD,
-  updateCRUD: updateCRUD
+  updateCRUD: updateCRUD,
+  deleteUserCRUD: deleteUserCRUD
 };
