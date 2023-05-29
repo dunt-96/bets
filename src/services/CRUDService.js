@@ -11,14 +11,14 @@ let createNewUser = (data) => {
         firstName: data.firstName,
         lastName: data.lastName,
         address: data.address,
-        gender: data.gender === '1' ? true : false,
+        gender: data.gender === "1" ? true : false,
         roleId: data.roleId,
         phoneNumber: data.phoneNumber,
       });
 
-      resolve('Successful');
+      resolve("Successful");
     } catch (error) {
-        reject(error);
+      reject(error);
     }
   });
 };
@@ -39,19 +39,41 @@ let hashUserPassword = (password) => {
 };
 
 let getAllUser = async () => {
-  return new Promise( async (resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
       let user = db.User.findAll({
-        raw: true
+        raw: true,
       });
       resolve(user);
     } catch (error) {
       reject(error);
     }
   });
-}
+};
+
+let getUserById = async (userId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await db.User.findOne({ where: { id: userId }, raw: true });
+      if (user) {
+        resolve(user);
+      } else {
+        reject([]);
+      }
+    } catch (error) {}
+  });
+};
+
+let updateCRUD = async (data) => {
+  return new Promise((resolve, reject) => {
+    console.log(data);
+    resolve();
+  });
+};
 
 module.exports = {
   createNewUser: createNewUser,
-  getAllUser: getAllUser
+  getAllUser: getAllUser,
+  getUserById: getUserById,
+  updateCRUD: updateCRUD,
 };
