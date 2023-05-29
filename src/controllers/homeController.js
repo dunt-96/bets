@@ -45,7 +45,7 @@ let updateCRUD = async (req, res) => {
   let user = req.body;
   console.log(user);
   let result = await CRUDService.updateCRUD(user);
-  return res.send("update user");
+  return res.send(result);
 }
 
 module.exports = {

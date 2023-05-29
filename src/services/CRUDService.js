@@ -64,10 +64,32 @@ let getUserById = async (userId) => {
   });
 };
 
-let updateCRUD = async (data) => {
-  return new Promise((resolve, reject) => {
-    console.log(data);
-    resolve();
+let updateCRUD = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let result = await db.User.update(
+        {
+          email: data.email,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          address: data.address,
+          phoneNumber: data.phoneNumber,
+        },
+        {
+          where: {
+            id: data.id,
+          },
+        }
+      );
+
+      if (result) {
+        resolve(result);
+      } else {
+        reject({});
+      }
+    } catch (error) {
+      reject(error);
+    }
   });
 };
 
