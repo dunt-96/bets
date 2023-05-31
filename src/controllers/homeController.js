@@ -58,6 +58,8 @@ let deleteUserCRUD = async (req, res) => {
   return res.send("delete success");
 }
 
+
+
 module.exports = {
   getHomePage: getHomePage,
   dunt: dunt,
@@ -66,5 +68,5 @@ module.exports = {
   displayCRUD: displayCRUD,
   editCRUD: editCRUD,
   updateCRUD: updateCRUD,
-  deleteUserCRUD: deleteUserCRUD
+  deleteUserCRUD: deleteUserCRUD,
 };
