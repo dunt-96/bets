@@ -14,9 +14,9 @@ let handleLogin = (email, password) => {
           },
           raw: true,
           attribute: {
-            exclude: ['password'],
-            include: ['password'],
-          }
+            exclude: ["password"],
+            include: ["password"],
+          },
         });
 
         if (user) {
@@ -66,6 +66,50 @@ let comparePw = (password) => {
   return new Promise(async (resolve, reject) => {});
 };
 
+let getAllUser = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log("id from get all user");
+      let userData = {};
+
+      if (id) {
+        console.log("id from get all user id: " + id);
+        let user = await db.User.findOne({
+          where: {
+            id: id,
+          },
+        });
+
+        if (user) {
+          userData.message = "Success";
+          userData.statusCode = 200;
+          delete user.password;
+          userData.user = user;
+        } else {
+          userData.message = "User is not exist";
+          userData.statusCode = 200;
+        }
+      } else {
+        userData.message = "Success";
+        userData.statusCode = 200;
+        console.log("id from get all user");
+        let allUser = await db.User.findAll({
+            attributes: {
+                exclude: ['password']
+            },
+        });
+        delete allUser.password;
+        userData.users = allUser;
+      }
+
+      resolve(userData);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   handleLogin: handleLogin,
+  getAllUser: getAllUser,
 };
