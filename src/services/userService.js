@@ -94,9 +94,9 @@ let getAllUser = (id) => {
         userData.statusCode = 200;
         console.log("id from get all user");
         let allUser = await db.User.findAll({
-            attributes: {
-                exclude: ['password']
-            },
+          attributes: {
+            exclude: ["password"],
+          },
         });
         delete allUser.password;
         userData.users = allUser;

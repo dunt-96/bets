@@ -95,30 +95,29 @@ let updateCRUD = (data) => {
 };
 
 let deleteUserCRUD = (userId) => {
-  return new Promise( async (resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
       let result = await db.User.destroy({
         where: {
-          id: userId
-        }
-      })
+          id: userId,
+        },
+      });
 
-      if(result) {
+      if (result) {
         resolve(result);
-      }
-      else{
+      } else {
         reject({});
       }
     } catch (error) {
       reject(error);
     }
   });
-}
+};
 
 module.exports = {
   createNewUser: createNewUser,
   getAllUser: getAllUser,
   getUserById: getUserById,
   updateCRUD: updateCRUD,
-  deleteUserCRUD: deleteUserCRUD
+  deleteUserCRUD: deleteUserCRUD,
 };
